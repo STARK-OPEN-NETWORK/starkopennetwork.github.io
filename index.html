@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STARK OPEN NETWORK</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: '#2563EB',
+            white: '#FFFFFF',
+          },
+          fontFamily: {
+            spaghetti: ['"Lobster"', 'cursive'],
+            body: ['Roboto', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    section > * {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.in-view > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Background with Light Blue Overlay */
+    .hero-section {
+      background-image: url('hero.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      min-height: 70vh; /* Hero height from provided code */
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 50, 105, 0.4); /* Light blue overlay */
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    /* Button Hover Effects */
+    .btn-blue {
+      transition: all 0.3s ease;
+    }
+    .btn-blue:hover {
+      transform: scale(1.05);
+      background-color: #1E40AF;
+    }
+
+    /* Link Hover Effects */
+    a {
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #1E40AF;
+    }
+
+    /* Footer Link Styling */
+    footer a {
+      color: #FFFFFF; /* White links for contrast */
+    }
+    footer a:hover {
+      color: #BFDBFE; /* Light blue hover for footer links */
+    }
+
+    /* Circular Logo Styling */
+    .logo-circle {
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .logo-circle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-blue-50 text-black font-body">
+
+  <!-- HEADER -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
+      <!-- Logo and Abbreviation -->
+      <div class="flex items-center gap-2">
+        <img src="logo.png" alt="STARK OPEN NETWORK Logo" class="w-12 h-12 logo-circle" />
+        <div class="text-blue text-2xl font-semibold">
+          STARK OPEN NETWORK 
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-6 text-blue text-sm font-semibold">
+        <a href="#home" class="hover:text-black">Home</a>
+        <a href="#about" class="hover:text-black">About</a>
+        <a href="#products" class="hover:text-black">Products</a>
+      </nav>
+
+      <!-- Hamburger Icon for Mobile -->
+      <button id="menu-btn" class="md:hidden text-blue focus:outline-none">
+        <i data-feather="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="fixed inset-0 bg-white bg-opacity-60 z-40 hidden"></div>
+
+  <!-- Sidebar Mobile Menu -->
+  <div id="mobile-sidebar" class="fixed top-0 left-0 w-64 h-full bg-white text-blue z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <!-- Top: Logo, Name, and Close Button -->
+    <div class="flex items-center justify-between px-4 py-4 border-b border-blue">
+      <!-- Logo and Name -->
+      <div class="flex items-center gap-2">
+        <img src="logo.png" alt="STARK OPEN NETWORK Logo" class="w-8 h-8 logo-circle" />
+        <div class="text-blue text-xl font-bold">
+          SON
+        </div>
+      </div>
+      <!-- Close Button -->
+      <button id="close-btn" class="text-blue focus:outline-none">
+        <i data-feather="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Menu Links -->
+    <nav class="flex flex-col px-4 py-4 space-y-4 font-semibold">
+      <a href="#home" class="hover:text-black">Home</a>
+      <a href="#about" class="hover:text-black">About</a>
+      <a href="#products" class="hover:text-black">Products</a>
+    </nav>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="hero-section text-white px-4 py-24 md:py-32">
+    <div class="hero-content max-w-7xl mx-auto text-center">
+      <!-- Company Name -->
+      <h1 class="text-white text-5xl md:text-7xl font-spaghetti mb-6">
+        STARK OPEN NETWORK
+      </h1>
+      <!-- Motto -->
+      <p class="text-black text-xl md:text-2xl font-body font-semibold">
+        Connecting the World, Seamlessly and Securely
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="bg-blue-50 text-black py-20 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+      <!-- Text -->
+      <div class="md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl md:text-4xl font-bold text-blue mb-4">
+          About STARK OPEN NETWORK
+        </h2>
+        <p class="text-gray-800 text-base md:text-lg mb-4">
+          STARK OPEN NETWORK is a software company dedicated to building innovative apps and solutions.
+        </p>
+        <p class="text-gray-700 text-sm mb-6">
+          Our flagship product, STARK MESSENGER, redefines communication with a secure, user-friendly platform, designed to connect people effortlessly.
+        </p>
+      </div>
+
+      <!-- Image -->
+      <div class="md:w-1/2 flex justify-center">
+        <img src="stark.png" alt="STARK OPEN NETWORK" class="w-max h-64 object-cover rounded-lg shadow-lg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SECTION -->
+  <section id="products" class="bg-blue-50 text-black py-16 px-4">
+    <div class="max-w-7xl mx-auto text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue mb-4">
+        Our Products
+      </h2>
+      <p class="text-gray-800 text-base md:text-lg">
+        Discover the innovative solutions we offer to enhance connectivity.
+      </p>
+    </div>
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+      <!-- STARK MESSENGER Container -->
+      <div class="md:w-1/2 bg-blue bg-opacity-10 rounded-xl p-8 shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+        <img src="log.png" alt="STARK MESSENGER Logo" class="w-24 h-24 logo-circle mx-auto mb-4" />
+        <h3 class="text-blue font-bold text-2xl mb-2">STARK MESSENGER</h3>
+        <p class="text-gray-800 text-base mb-4">
+          STARK MESSENGER is a revolutionary messaging app designed for seamless, secure, and instant communication. With end-to-end encryption, group chats, and cross-platform support, it’s your go-to app for staying connected.
+        </p>
+        <a href="#products" class="btn-blue inline-block bg-blue text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-600">Learn More</a>
+      </div>
+
+      <!-- Other Products Button -->
+      <div class="md:w-1/2 flex justify-center">
+        <a href="#" class="btn-blue border border-blue text-blue font-semibold px-6 py-3 rounded-lg hover:bg-blue hover:text-white">
+          View Other Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN FOOTER -->
+  <footer class="bg-blue text-white pt-16 pb-8 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-8 text-sm">
+      <!-- Products -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Products</h4>
+        <ul class="space-y-2">
+          <li><a href="#products">STARK MESSENGER</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Resources</h4>
+        <ul class="space-y-2">
+          <li><a href="#">Support</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="mt-12 pt-6 text-white flex flex-col md:flex-row justify-between items-center text-xs px-6 py-4 border-t border-white border-opacity-20">
+      <p>© 2025 STARK OPEN NETWORK. All rights reserved.</p>
+      <p class="mt-2 md:mt-0">All systems operational ✅</p>
+    </div>
+  </footer>
+
+  <!-- JS for Sidebar -->
+  <script>
+    feather.replace();
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const overlay = document.getElementById('overlay');
+
+    const openSidebar = () => {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    };
+
+    const closeSidebar = () => {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    };
+
+    menuBtn.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+  </script>
+
+  <!-- JS for Intersection Observer -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
